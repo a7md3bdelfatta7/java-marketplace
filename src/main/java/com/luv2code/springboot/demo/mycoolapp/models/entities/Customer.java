@@ -24,7 +24,11 @@ public class Customer {
     private String name;
     private String email;
     private Integer age;
-    
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Ensure purchaseOrders are eagerly fetched
+    private List<PurchaseOrder> purchaseOrders;
+
+
 
     public Customer(Integer id,
                     String name,

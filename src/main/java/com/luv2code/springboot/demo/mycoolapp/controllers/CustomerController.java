@@ -34,13 +34,14 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void addCustomer (@RequestBody NewCustomerRequest request){
+    public ResponseEntity<Customer> addCustomer (@RequestBody NewCustomerRequest request){
         Customer customer = new Customer();
 
         customer.setName(request.name());
         customer.setEmail(request.email());
         customer.setAge(request.age());
         customerRepository.save(customer);
+        return ResponseEntity.ok(customerRepository.save(customer));
     }
 
     @PutMapping("/{customerId}")
