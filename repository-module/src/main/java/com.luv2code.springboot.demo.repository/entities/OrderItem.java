@@ -1,4 +1,4 @@
-package com.luv2code.springboot.demo.models.entities;
+package com.luv2code.springboot.demo.repository.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -49,12 +49,25 @@ public class OrderItem {
         this.product = product;
     }
 
+    public void setProductById(Integer productId) {
+        this.product = new Product(productId);
+    }
+
     public Integer getQuantity() {
         return quantity;
     }
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", product=" + product.toString() +
+                ", purchaseOrder=" + purchaseOrder +
+                ", quantity=" + quantity +
+                '}';
     }
 
 }

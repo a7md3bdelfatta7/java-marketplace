@@ -1,8 +1,9 @@
-package com.luv2code.springboot.demo.models.services;
+package com.luv2code.springboot.demo.services;
 
 
-import com.luv2code.springboot.demo.models.entities.OrderItem;
-import com.luv2code.springboot.demo.models.repositories.OrderItemRepository;
+import com.luv2code.springboot.demo.repository.entities.OrderItem;
+import com.luv2code.springboot.demo.repository.OrderItemRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

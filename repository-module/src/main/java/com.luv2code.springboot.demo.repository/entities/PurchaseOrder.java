@@ -1,4 +1,4 @@
-package com.luv2code.springboot.demo.models.entities;
+package com.luv2code.springboot.demo.repository.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -65,5 +65,19 @@ public class PurchaseOrder {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public void setCustomerById(Integer customerId) {
+        this.customer = new Customer(customerId);
+    }
+
+    public String toString() {
+        return "PurchaseOrder{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", totalAmount=" + totalAmount +
+                ", customer=" + customer +
+                ", orderItems=" + orderItems.toString() +
+                '}';
     }
 }

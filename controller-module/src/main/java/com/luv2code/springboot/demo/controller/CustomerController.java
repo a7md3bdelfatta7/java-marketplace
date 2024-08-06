@@ -1,30 +1,46 @@
 package com.luv2code.springboot.demo.controller;
-import com.luv2code.springboot.demo.models.entities.Customer;
-import com.luv2code.springboot.demo.models.services.CustomerService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.luv2code.springboot.demo.controller.dto.CustomerDTO;
+import com.luv2code.springboot.demo.repository.entities.Customer;
+import com.luv2code.springboot.demo.services.CustomerService;
+
+import com.luv2code.springboot.demo.services.vo.CustomerVO;
+import jakarta.annotation.PostConstruct;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
 
-    private static final Logger log = LoggerFactory.getLogger(MyCoolappApplication.class);
 
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @PostConstruct
+    public void configureMapper() {
+        modelMapper.typeMap(CustomerVO.class, CustomerDTO.class).addMappings(mapper -> mapper.map(CustomerVO::getUsername, CustomerDTO::setUserName));
+        modelMapper.typeMap(CustomerDTO.class, CustomerVO.class).addMappings(mapper -> mapper.map(CustomerDTO::getUserName, CustomerVO::setUsername));
+    }
+
+
 
     @GetMapping
-    public List<Customer> getCustomers(){
-        return customerService.findAll();
+    public List<CustomerDTO> getCustomers() {
+        List<CustomerVO> customerVOs = customerService.getAllCustomers();
+        return customerVOs.stream()
+                .map(customerVO -> modelMapper.map(customerVO, CustomerDTO.class))
+                .collect(Collectors.toList());
     }
 
     record NewCustomerRequest(String name,String email, Integer age){

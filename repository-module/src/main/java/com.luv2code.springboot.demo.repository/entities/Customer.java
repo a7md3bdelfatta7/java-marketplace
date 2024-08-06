@@ -1,4 +1,4 @@
-package com.luv2code.springboot.demo.models.entities;
+package com.luv2code.springboot.demo.repository.entities;
 
 import jakarta.persistence.*;
 
@@ -40,8 +40,11 @@ public class Customer {
         this.age = age;
     }
 
-    public Customer() {
+    public Customer(Integer id) {
+        this.id = id;
+    }
 
+    public Customer() {
     }
 
 
