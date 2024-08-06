@@ -26,7 +26,7 @@ The Order Management System is a Spring Boot application designed to manage cust
 ## Setup and Installation
 
 ### Prerequisites
-- Java 8 or higher
+- Java 17 
 - Maven
 - PostgreSQL
 
