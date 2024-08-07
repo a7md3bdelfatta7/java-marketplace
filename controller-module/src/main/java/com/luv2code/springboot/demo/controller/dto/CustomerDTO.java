@@ -10,6 +10,14 @@ public class CustomerDTO {
     public CustomerDTO() {
     }
 
+    // Parameterized constructor
+    public CustomerDTO(Integer id, String userName, String email, Integer age) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.age = age;
+    }
+
     // Getters and Setters
     public Integer getId() {
         return id;

@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class CustomerController {
 
 
-
     @Autowired
     private CustomerService customerService;
     @Autowired
@@ -34,7 +33,6 @@ public class CustomerController {
     }
 
 
-
     @GetMapping
     public List<CustomerDTO> getCustomers() {
         List<CustomerVO> customerVOs = customerService.getAllCustomers();
@@ -43,57 +41,62 @@ public class CustomerController {
                 .collect(Collectors.toList());
     }
 
-    record NewCustomerRequest(String name,String email, Integer age){
+    record NewCustomerRequest(String name, String email, Integer age) {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> addCustomer (@RequestBody NewCustomerRequest request){
-        Customer customer = new Customer();
+    public ResponseEntity<CustomerDTO> addCustomer(@RequestBody NewCustomerRequest request) {
+        CustomerVO customer = new CustomerVO();
 
-        customer.setName(request.name());
+        customer.setUsername(request.name());
         customer.setEmail(request.email());
         customer.setAge(request.age());
-        return ResponseEntity.ok(customerService.save(customer));
+
+        return ResponseEntity.ok(modelMapper.map(customerService.save(customer), CustomerDTO.class));
     }
 
     @PutMapping("/{customerId}")
-    public ResponseEntity<Customer> updateCustomer (@PathVariable("customerId") Integer id,
-                                          @RequestBody NewCustomerRequest request){
+    public ResponseEntity<CustomerDTO> updateCustomer(@PathVariable("customerId") Integer id,
+                                                      @RequestBody NewCustomerRequest request) {
 
-        Optional<Customer> customer = customerService.findById(id);
+        Optional<CustomerVO> customer = customerService.getCustomerById(id);
 
-        if(customer.isPresent()) {
-            Customer updatedCustomer = customer.get();
-            updatedCustomer.setName(request.name());
+        if (customer.isPresent()) {
+            CustomerVO updatedCustomer = customer.get();
+            updatedCustomer.setUsername(request.name());
             updatedCustomer.setEmail(request.email());
             updatedCustomer.setAge(request.age());
 
-            return ResponseEntity.ok(customerService.save(updatedCustomer));
-        }else{
+            return ResponseEntity.ok(modelMapper.map(customerService.save(updatedCustomer), CustomerDTO.class));
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("{customerId}")
-    public ResponseEntity<Customer> deleteCustomer(@PathVariable("customerId") Integer id){
-        Optional<Customer> customer = customerService.findById(id);
-        if(customer.isPresent()) {
+    public ResponseEntity<CustomerDTO> deleteCustomer(@PathVariable("customerId") Integer id) {
+        Optional<CustomerVO> customer = customerService.getCustomerById(id);
+        if (customer.isPresent()) {
             customerService.deleteById(customer.get().getId());
             return ResponseEntity.noContent().build();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
 
     @GetMapping("{customerId}")
-    public Customer getCustomer(@PathVariable("customerId") Integer id){
+    public CustomerDTO getCustomer(@PathVariable("customerId") Integer id) {
 //        log.info(id.toString());
-        try{
-            return customerService.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
-        }catch (Exception e){
-//            log.error(e.getMessage());
-            return new Customer(-1,"","",-1);
+        try {
+            Optional<CustomerVO> customer = customerService.getCustomerById(id);
+            if (customer.isPresent()) {
+                return modelMapper.map(customer.get(), CustomerDTO.class);
+            } else {
+                return new CustomerDTO(-1, "", "", -1);
+            }
+        } catch (Exception e) {
+            return new CustomerDTO(-1, "", "", -1);
         }
     }
 

@@ -39,17 +39,20 @@ public class CustomerService {
     }
 
     // Fetch a customer by ID
-    public Optional<Customer> findById(Integer id) {
-        return customerRepository.findById(id);
+    public Optional<CustomerVO> getCustomerById(Integer id) {
+        Optional<Customer> entity = customerRepository.findById(id);
+        return entity.map(value -> modelMapper.map(value, CustomerVO.class));
     }
 
     // Save a new customer or update an existing one
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+    public CustomerVO save(CustomerVO customer) {
+        Customer entity = modelMapper.map(customer, Customer.class);
+        Customer savedEntity = customerRepository.save(entity);
+        return modelMapper.map(savedEntity, CustomerVO.class);
     }
 
     // Delete a customer by ID
-    public void deleteById(Integer id) {
-        customerRepository.deleteById(id);
+    public void deleteById(Long id) {
+        customerRepository.deleteById(Integer.getInteger(id.toString()));
     }
 }

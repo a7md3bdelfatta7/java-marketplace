@@ -20,7 +20,7 @@ public class Customer {
             generator = "customer_id_sequence"
     )
 
-    private Integer id;
+    private Long id;
     private String name;
     private String email;
     private Integer age;
@@ -30,7 +30,7 @@ public class Customer {
 
 
 
-    public Customer(Integer id,
+    public Customer(Long id,
                     String name,
                     String email,
                     Integer age) {
@@ -40,7 +40,7 @@ public class Customer {
         this.age = age;
     }
 
-    public Customer(Integer id) {
+    public Customer(Long id) {
         this.id = id;
     }
 
@@ -48,11 +48,11 @@ public class Customer {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

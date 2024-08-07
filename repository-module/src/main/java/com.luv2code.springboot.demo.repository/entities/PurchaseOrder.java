@@ -67,7 +67,7 @@ public class PurchaseOrder {
         this.orderItems = orderItems;
     }
 
-    public void setCustomerById(Integer customerId) {
+    public void setCustomerById(Long customerId) {
         this.customer = new Customer(customerId);
     }
 
