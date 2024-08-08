@@ -1,4 +1,4 @@
-package com.luv2code.springboot.demo.controller;
+package com.luv2code.springboot.demo.controller.rest;
 
 import com.luv2code.springboot.demo.controller.dto.ProductDTO;
 import com.luv2code.springboot.demo.services.ProductService;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/products")
-public class ProductController {
+public class ProductRESTController {
 
     @Autowired
     private ProductService productService;

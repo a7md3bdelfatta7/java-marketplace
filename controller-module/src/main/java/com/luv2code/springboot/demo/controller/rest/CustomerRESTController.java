@@ -1,7 +1,6 @@
-package com.luv2code.springboot.demo.controller;
+package com.luv2code.springboot.demo.controller.rest;
 
 import com.luv2code.springboot.demo.controller.dto.CustomerDTO;
-import com.luv2code.springboot.demo.repository.entities.Customer;
 import com.luv2code.springboot.demo.services.CustomerService;
 
 import com.luv2code.springboot.demo.services.vo.CustomerVO;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/customers")
-public class CustomerController {
+public class CustomerRESTController {
 
 
     @Autowired
@@ -28,8 +27,8 @@ public class CustomerController {
 
     @PostConstruct
     public void configureMapper() {
-        modelMapper.typeMap(CustomerVO.class, CustomerDTO.class).addMappings(mapper -> mapper.map(CustomerVO::getUsername, CustomerDTO::setUserName));
-        modelMapper.typeMap(CustomerDTO.class, CustomerVO.class).addMappings(mapper -> mapper.map(CustomerDTO::getUserName, CustomerVO::setUsername));
+        modelMapper.typeMap(CustomerVO.class, CustomerDTO.class).addMappings(mapper -> mapper.map(CustomerVO::getUsername, CustomerDTO::setUsername));
+        modelMapper.typeMap(CustomerDTO.class, CustomerVO.class).addMappings(mapper -> mapper.map(CustomerDTO::getUsername, CustomerVO::setUsername));
     }
 
 
@@ -77,7 +76,7 @@ public class CustomerController {
     public ResponseEntity<CustomerDTO> deleteCustomer(@PathVariable("customerId") Integer id) {
         Optional<CustomerVO> customer = customerService.getCustomerById(id);
         if (customer.isPresent()) {
-            customerService.deleteById(customer.get().getId());
+            customerService.deleteCustomer(Math.toIntExact(customer.get().getId()));
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

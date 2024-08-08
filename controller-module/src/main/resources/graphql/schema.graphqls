@@ -1,0 +1,25 @@
+type Mutation {
+    createUser(input: CustomerInput!): Customer
+    updateUser(input: CustomerInput!): Customer
+    deleteCustomer(id: Int!): Boolean
+}
+
+type Customer {
+    id: ID
+    username: String!
+    email: String!
+    age: Int
+}
+
+input CustomerInput {
+    id: Int
+    username: String
+    email: String
+    age: Int
+}
+
+type Query {
+    getAllCustomers: [Customer]
+    getCustomerById(id: ID!): Customer
+    deleteCustomerById(id: ID!) : Customer
+}

@@ -1,22 +1,10 @@
 package com.luv2code.springboot.demo.controller.dto;
 
-public class CustomerDTO {
+public class CustomerInput {
     private Integer id;
     private String username;
     private String email;
     private Integer age;
-
-    // Default constructor
-    public CustomerDTO() {
-    }
-
-    // Parameterized constructor
-    public CustomerDTO(Integer id, String userName, String email, Integer age) {
-        this.id = id;
-        this.username = userName;
-        this.email = email;
-        this.age = age;
-    }
 
     // Getters and Setters
     public Integer getId() {

@@ -12,6 +12,17 @@ public class CustomerVO implements Serializable {
     private Integer age;
     // Add other fields as needed
 
+    // Default constructor
+    public CustomerVO() {
+    }
+
+    // Parameterized constructor
+    public CustomerVO(String username, String email, Integer age) {
+        this.username = username;
+        this.email = email;
+        this.age = age;
+    }
+
     // Getters and setters
 
     // Getters and Setters

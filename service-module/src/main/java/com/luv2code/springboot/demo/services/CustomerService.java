@@ -51,8 +51,31 @@ public class CustomerService {
         return modelMapper.map(savedEntity, CustomerVO.class);
     }
 
-    // Delete a customer by ID
-    public void deleteById(Long id) {
-        customerRepository.deleteById(Integer.getInteger(id.toString()));
+    public Boolean deleteCustomer(Integer id) {
+        Optional<Customer> customerOptional = customerRepository.findById(id);
+        if (customerOptional.isPresent()) {
+            customerRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public CustomerVO updateUser(Integer id, String username, String email, Integer age) {
+        Optional<Customer> customerOptional = customerRepository.findById(id);
+        if (customerOptional.isPresent()) {
+            Customer customer = customerOptional.get();
+            if (username != null) {
+                customer.setName(username);
+            }
+            if (email != null) {
+                customer.setEmail(email);
+            }
+            if (age != null) {
+                customer.setAge(age);
+            }
+            Customer updatedCustomer = customerRepository.save(customer);
+            return modelMapper.map(updatedCustomer, CustomerVO.class);
+        }
+        return null; // Or throw an exception if the user is not found
     }
 }

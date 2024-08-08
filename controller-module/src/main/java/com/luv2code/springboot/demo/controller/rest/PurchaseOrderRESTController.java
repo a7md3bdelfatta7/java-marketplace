@@ -1,4 +1,4 @@
-package com.luv2code.springboot.demo.controller;
+package com.luv2code.springboot.demo.controller.rest;
 import com.luv2code.springboot.demo.controller.dto.OrderItemDTO;
 import com.luv2code.springboot.demo.controller.dto.PurchaseOrderDTO;
 import com.luv2code.springboot.demo.repository.entities.PurchaseOrder;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/orders")
-public class PurchaseOrderController {
+public class PurchaseOrderRESTController {
     @Autowired
     private PurchaseOrderService orderService;
     @Autowired
