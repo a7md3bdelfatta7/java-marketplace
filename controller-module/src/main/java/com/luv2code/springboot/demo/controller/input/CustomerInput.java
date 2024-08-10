@@ -1,4 +1,4 @@
-package com.luv2code.springboot.demo.controller.dto;
+package com.luv2code.springboot.demo.controller.input;
 
 public class CustomerInput {
     private Integer id;

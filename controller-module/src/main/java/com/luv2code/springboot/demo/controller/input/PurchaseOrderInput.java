@@ -1,18 +1,18 @@
-package com.luv2code.springboot.demo.controller.dto;
+package com.luv2code.springboot.demo.controller.input;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PurchaseOrderDTO {
+public class PurchaseOrderInput {
+
     private Integer id;
-//    private Long customerId;
-    private CustomerDTO customer;
+    private Long customerId;
     private Double totalAmount;
     private LocalDateTime orderDate;
-    private List<OrderItemDTO> orderItems;
+    private List<OrderItemInput> orderItems;
 
     // Default constructor
-    public PurchaseOrderDTO() {
+    public PurchaseOrderInput() {
     }
 
     // Getters and Setters
@@ -24,20 +24,12 @@ public class PurchaseOrderDTO {
         this.id = id;
     }
 
-//    public Long getCustomerId() {
-//        return customerId;
-//    }
-//
-//    public void setCustomerId(Long customerId) {
-//        this.customerId = customerId;
-//    }
-
-    public CustomerDTO getCustomer() {
-        return customer;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(CustomerDTO customer) {
-        this.customer = customer;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Double getTotalAmount() {
@@ -56,11 +48,11 @@ public class PurchaseOrderDTO {
         this.orderDate = orderDate;
     }
 
-    public List<OrderItemDTO> getOrderItems() {
+    public List<OrderItemInput> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItemDTO> orderItems) {
+    public void setOrderItems(List<OrderItemInput> orderItems) {
         this.orderItems = orderItems;
     }
 
@@ -69,6 +61,7 @@ public class PurchaseOrderDTO {
     public String toString() {
         return "PurchaseOrderDTO{" +
                 "id=" + id +
+                ", customerId=" + customerId +
                 ", totalAmount=" + totalAmount +
                 ", orderDate=" + orderDate +
                 ", orderItems=" + orderItems +

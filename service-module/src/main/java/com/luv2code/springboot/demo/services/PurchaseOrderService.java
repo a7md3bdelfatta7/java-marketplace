@@ -34,13 +34,13 @@ public class PurchaseOrderService {
     @PostConstruct
     public void configureMapper() {
         modelMapper.typeMap(PurchaseOrderVO.class, PurchaseOrder.class).addMappings(mapper -> {
-            mapper.map(PurchaseOrderVO::getCustomerId, PurchaseOrder::setCustomerById);
+//            mapper.map(PurchaseOrderVO::getCustomerId, PurchaseOrder::setCustomerById);
             mapper.skip(PurchaseOrder::setOrderItems);
         });
 
-        modelMapper.typeMap(OrderItemVO.class, OrderItem.class).addMappings(mapper -> {
-            mapper.map(OrderItemVO::getProductId, OrderItem::setProductById);
-        });
+//        modelMapper.typeMap(OrderItemVO.class, OrderItem.class).addMappings(mapper -> {
+//            mapper.map(OrderItemVO::getProductId, OrderItem::setProductById);
+//        });
 
     }
 
@@ -52,8 +52,9 @@ public class PurchaseOrderService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<PurchaseOrder> findById(Integer id) {
-        return  purchaseOrderRepository.findById(id);
+    public Optional<PurchaseOrderVO> findById(Integer id) {
+        Optional<PurchaseOrder> entity = purchaseOrderRepository.findById(id);
+        return entity.map(value -> modelMapper.map(value, PurchaseOrderVO.class));
     }
 
     public PurchaseOrderVO save(PurchaseOrderVO purchaseOrderVO) {

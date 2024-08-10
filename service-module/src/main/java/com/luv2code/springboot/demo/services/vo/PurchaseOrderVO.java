@@ -6,10 +6,10 @@ import java.util.List;
 
 public class PurchaseOrderVO {
     private Long id;
-    private Long customerId;
     private Double totalAmount;
     private LocalDateTime orderDate;
     private List<OrderItemVO> orderItems;
+    private CustomerVO customer;
     // Add other fields as needed
 
     // Getters and setters
@@ -23,12 +23,21 @@ public class PurchaseOrderVO {
         this.id = id;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+//    public Long getCustomerId() {
+//        return customerId;
+//    }
+//
+
+    public void setCustomerById(Long customerId) {
+        this.customer = new CustomerVO(customerId);
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public CustomerVO getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerVO customer) {
+        this.customer = customer;
     }
 
 
@@ -60,7 +69,6 @@ public class PurchaseOrderVO {
     public String toString() {
         return "PurchaseOrderVO{" +
                 "id=" + id +
-                ", customerId=" + customerId +
                 ", totalAmount=" + totalAmount +
                 ", orderDate=" + orderDate +
                 ", orderItems=" + orderItems +

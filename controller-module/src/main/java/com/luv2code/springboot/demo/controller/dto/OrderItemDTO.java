@@ -1,20 +1,20 @@
 package com.luv2code.springboot.demo.controller.dto;
 
+
 public class OrderItemDTO {
-    private Long productId;
     private Integer quantity;
+    private ProductDTO product;
 
     // Default constructor
     public OrderItemDTO() {
     }
 
-    // Getters and Setters
-    public Long getProductId() {
-        return productId;
+    public ProductDTO getProduct() {
+        return product;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setProduct(ProductDTO product) {
+        this.product = product;
     }
 
     public Integer getQuantity() {

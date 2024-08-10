@@ -1,7 +1,7 @@
 package com.luv2code.springboot.demo.controller.graphql;
 
 import com.luv2code.springboot.demo.controller.dto.CustomerDTO;
-import com.luv2code.springboot.demo.controller.dto.CustomerInput;
+import com.luv2code.springboot.demo.controller.input.CustomerInput;
 import com.luv2code.springboot.demo.services.vo.CustomerVO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

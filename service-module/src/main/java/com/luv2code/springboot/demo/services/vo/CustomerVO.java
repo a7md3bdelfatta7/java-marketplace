@@ -16,12 +16,17 @@ public class CustomerVO implements Serializable {
     public CustomerVO() {
     }
 
+    public CustomerVO(Long id) {
+        this.id = id;
+    }
+
     // Parameterized constructor
     public CustomerVO(String username, String email, Integer age) {
         this.username = username;
         this.email = email;
         this.age = age;
     }
+
 
     // Getters and setters
 

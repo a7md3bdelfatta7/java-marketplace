@@ -1,7 +1,54 @@
 type Mutation {
+    # customer mutations
     createUser(input: CustomerInput!): Customer
     updateUser(input: CustomerInput!): Customer
     deleteCustomer(id: Int!): Boolean
+    # product mutations
+    createProduct(input: ProductInput!): Product
+    updateProduct(id: Int!, input: ProductInput!): Product
+    deleteProduct(id: Int!): Boolean
+
+    createOrder(input: PurchaseOrderInput!): PurchaseOrder
+    updateOrder(id: Int!, input: PurchaseOrderInput!): PurchaseOrder
+    deleteOrder(id: Int!): Boolean
+}
+
+type Query {
+    # customer queries
+    getAllCustomers: [Customer]
+    getCustomerById(id: ID!): Customer
+    deleteCustomerById(id: ID!) : Customer
+    # product queries
+    getProductById(id: Int!): Product
+    getAllProducts: [Product]
+
+    getOrderById(id: Int!): PurchaseOrder
+    getAllOrders: [PurchaseOrder]
+}
+
+
+input PurchaseOrderInput {
+    customerId: Int!
+    orderDate: String!
+    orderItems: [OrderItemInput!]!
+}
+
+input OrderItemInput {
+    productId: Int!
+    quantity: Int!
+}
+
+type PurchaseOrder {
+    id: Int
+    customer: Customer
+    totalAmount: Float
+    orderDate: String
+    orderItems: [OrderItem]
+}
+
+type OrderItem {
+    quantity: Int
+    product: Product
 }
 
 type Customer {
@@ -18,8 +65,15 @@ input CustomerInput {
     age: Int
 }
 
-type Query {
-    getAllCustomers: [Customer]
-    getCustomerById(id: ID!): Customer
-    deleteCustomerById(id: ID!) : Customer
+input ProductInput {
+    name: String!
+    description: String
+    price: Float!
+}
+
+type Product {
+    id: Int
+    name: String
+    description: String
+    price: Float
 }

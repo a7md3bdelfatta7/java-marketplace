@@ -3,10 +3,10 @@ package com.luv2code.springboot.demo.services.vo;
 public class OrderItemVO {
     private Long id;
     private Integer quantity;
-    private Double price;
-    private Long productId;
-    private Long orderId;
+//    private Long productId;
+    private ProductVO product;
     // Add other fields as needed
+
 
     // Getters and setters
 
@@ -27,27 +27,27 @@ public class OrderItemVO {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
+//    public Long getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(Long productId) {
+//        this.productId = productId;
+//    }
+
+    public ProductVO getProduct() {
+        return product;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setProduct(ProductVO product) {
+        this.product = product;
     }
 
-    public Long getProductId() {
-        return productId;
+    public void setProductById(Long productId) {
+        this.product = new ProductVO(productId);
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
 
-    public Long getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
+
 }
