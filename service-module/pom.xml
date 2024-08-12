@@ -80,6 +80,8 @@
                 <configuration>
                     <includes>
                         <include>**/CustomerServiceTest.java</include>
+                        <include>**/ProductServiceTest.java</include>
+                        <include>**/PurchaseOrderServiceTest.java</include>
                     </includes>
                 </configuration>
             </plugin>
