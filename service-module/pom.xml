@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.luv2code.springboot.demo</groupId>
+        <groupId>com.springboot.demo</groupId>
         <artifactId>mycoolapp</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -60,12 +60,12 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.luv2code.springboot.demo</groupId>
+            <groupId>com.springboot.demo</groupId>
             <artifactId>repository-module</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.luv2code.springboot.demo</groupId>
+            <groupId>com.springboot.demo</groupId>
             <artifactId>config-module</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
