@@ -5,6 +5,7 @@ import com.springboot.demo.repository.entities.Product;
 import com.springboot.demo.services.vo.ProductVO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ProductService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Cacheable("products")
     public List<ProductVO> findAll() {
         List<Product> entities = productRepository.findAll();
         return entities.stream()

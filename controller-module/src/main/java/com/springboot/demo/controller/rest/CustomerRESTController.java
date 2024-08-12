@@ -37,7 +37,7 @@ public class CustomerRESTController {
         List<CustomerVO> customerVOs = customerService.getAllCustomers();
         return customerVOs.stream()
                 .map(customerVO -> modelMapper.map(customerVO, CustomerDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     record NewCustomerRequest(String name, String email, Integer age) {

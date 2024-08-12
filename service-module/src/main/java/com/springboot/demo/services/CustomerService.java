@@ -12,7 +12,6 @@ import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -35,7 +34,7 @@ public class CustomerService {
         List<Customer> entities = customerRepository.findAll();
         return entities.stream()
                 .map(entity -> modelMapper.map(entity, CustomerVO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     // Fetch a customer by ID
