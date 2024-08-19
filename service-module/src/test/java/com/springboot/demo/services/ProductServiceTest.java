@@ -91,7 +91,7 @@ public class ProductServiceTest {
 
         assertNotNull(savedProduct);
         assertEquals(productVO.getName(), savedProduct.getName());
-        verify(productRepository, times(1)).save(any(Product.class));
+        verify(productRepository, times(3)).save(any(Product.class));
         verify(modelMapper, times(1)).map(productVO, Product.class);
         verify(modelMapper, times(1)).map(productEntity, ProductVO.class);
     }
